@@ -5,14 +5,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   reactStrictMode: true,
-  
-  // Performance optimizations
-  swcMinify: true,
+
+  // ✅ swcMinify is now enabled by default — remove old key
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  
-  // Image optimization
+
+  // ✅ Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
@@ -20,45 +19,42 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     domains: ['localhost'],
   },
-  
-  // Compression
+
+  // ✅ Compression
   compress: true,
-  
-  // Bundle optimization
+
+  // ✅ Experimental options (supported in Next.js 15)
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-dialog', '@radix-ui/react-label'],
+    optimizePackageImports: [
+      'lucide-react',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-label',
+    ],
   },
-  
-  // Webpack optimizations (simplified for Vercel compatibility)
-  webpack: (config, { dev, isServer }) => {
-    // Only run bundle analyzer in development
+
+  // ✅ Webpack optimizations (for dev only)
+  webpack: (config, { dev }) => {
     if (dev && process.env.ANALYZE === 'true') {
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
       config.plugins.push(
-        new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
+        new BundleAnalyzerPlugin({
           analyzerMode: 'static',
           openAnalyzer: false,
           reportFilename: '../bundle-analyzer-report.html',
         })
       );
     }
-    
     return config;
   },
-  
-  // Headers for performance
+
+  // ✅ Headers
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
+          { key: 'X-DNS-Prefetch-Control', value: 'on' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
         ],
       },
       {
@@ -72,11 +68,11 @@ const nextConfig = {
       },
     ];
   },
-  
-  // Performance monitoring
-  analyticsId: process.env.NEXT_PUBLIC_ANALYTICS_ID,
-  
-  // Reduce bundle size
+
+  // 🚫 Removed invalid analyticsId (deprecated in Next.js 15)
+  // Use environment variable NEXT_PUBLIC_ANALYTICS_ID directly in your code
+
+  // ✅ Modular imports
   modularizeImports: {
     'lucide-react': {
       transform: 'lucide-react/dist/esm/icons/{{member}}',
