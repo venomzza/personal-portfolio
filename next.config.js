@@ -6,12 +6,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   reactStrictMode: true,
 
-  // ✅ swcMinify is now enabled by default — remove old key
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
-  // ✅ Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
@@ -20,10 +18,8 @@ const nextConfig = {
     domains: ['localhost'],
   },
 
-  // ✅ Compression
   compress: true,
 
-  // ✅ Experimental options (supported in Next.js 15)
   experimental: {
     optimizePackageImports: [
       'lucide-react',
@@ -32,7 +28,6 @@ const nextConfig = {
     ],
   },
 
-  // ✅ Webpack optimizations (for dev only)
   webpack: (config, { dev }) => {
     if (dev && process.env.ANALYZE === 'true') {
       const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -47,7 +42,6 @@ const nextConfig = {
     return config;
   },
 
-  // ✅ Headers
   async headers() {
     return [
       {
@@ -69,10 +63,6 @@ const nextConfig = {
     ];
   },
 
-  // 🚫 Removed invalid analyticsId (deprecated in Next.js 15)
-  // Use environment variable NEXT_PUBLIC_ANALYTICS_ID directly in your code
-
-  // ✅ Modular imports
   modularizeImports: {
     'lucide-react': {
       transform: 'lucide-react/dist/esm/icons/{{member}}',
