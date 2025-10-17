@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Playstream-Engine",
+  "tagline": "video streaming engine that allows users to stream live video content to multiple viewers with low latency and high quality.",
+    "badges": ["JavaScript", "node.js", "Express", "mongodb"],
+    "github_url": "https://github.com/venomzza/Playstream-Engine",
+    "demo_url": "",
+    "stars": 1,
+    "priority": 2,
+    "category": "Web Project"
+  },
+  {
+    "title": "Web-based Vulnerability Scanner",
+  "tagline": "A lightweight web scanner that detects common security issues in web applications and displays detailed scan results in a clean, user-friendly interface.",
+    "badges": ["Python", "Flask", "JavaScript"],
+    "github_url": "https://github.com/venomzza/web-based-vulnerbility-Scanner-",
+    "demo_url": "",
+    "stars": 2,
+    "priority": 3,
+    "category": "Web Project"
+  },
+  {
+    "title": "Face Recognition Attendance System",
+  "tagline": "An automated attendance tool that marks presence by detecting faces via webcam feed.",
+    "badges": ["Python", "OpenCV", "TensorFlow"],
+    "github_url": "https://github.com/venomzza/Face-Recognition-Attendence-system",
+    "demo_url": "",
+    "stars": 0,
+    "priority": 1,
+    "category": "Web Project"
+  }
+]
